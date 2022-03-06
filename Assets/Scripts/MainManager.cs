@@ -30,6 +30,11 @@ public class MainManager : MonoBehaviour
     {        
         userName = GameManager.persistentUserName;
         LoadPrefs();
+        Debug.Log(highScoreUserName.Length);
+        if (string.IsNullOrEmpty(highScoreUserName) || (highScoreUserName.Length <=1))
+        {
+            highScore = 0;
+        }
         highScoreText.text = "Best Score: " + highScoreUserName + ": " + highScore.ToString();
 
         const float step = 0.6f;
