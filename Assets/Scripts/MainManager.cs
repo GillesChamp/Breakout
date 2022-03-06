@@ -75,7 +75,7 @@ public class MainManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"Score : {m_Points}";
+        ScoreText.text = userName + " Score: " + m_Points.ToString();
         if (m_Points > highScore)
         {
             highScore = m_Points;
