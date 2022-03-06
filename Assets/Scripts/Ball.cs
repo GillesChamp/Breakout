@@ -2,20 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Ball : MonoBehaviour
 {
+    public AudioClip collisionBall;
     private Rigidbody m_Rigidbody;
+    private AudioSource playerAudio;
 
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        playerAudio = GetComponent<AudioSource>();
     }
     
     private void OnCollisionExit(Collision other)
     {
-        var velocity = m_Rigidbody.velocity;
-        
+        playerAudio.PlayOneShot(collisionBall, 0.8f);
+
+        var velocity = m_Rigidbody.velocity;        
         //after a collision we accelerate a bit
         velocity += velocity.normalized * 0.01f;
         
@@ -32,5 +37,6 @@ public class Ball : MonoBehaviour
         }
 
         m_Rigidbody.velocity = velocity;
+
     }
 }
